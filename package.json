@@ -1,0 +1,45 @@
+{
+  "name": "glassplayer",
+  "productName": "GlassPlayer",
+  "version": "0.1.0",
+  "description": "A clean, glassy desktop player for Spotify and Apple Music. Playlist imports, Discord presence. No ads, no bloat, no tracking.",
+  "main": "main/main.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "check": "node scripts/check.js",
+    "test": "node --test",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "github:castlabs/electron-releases#v44.9.3+wvcus",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "app.glassplayer",
+    "productName": "GlassPlayer",
+    "files": [
+      "main/**",
+      "renderer/**",
+      "package.json"
+    ],
+    "electronDownload": {
+      "mirror": "https://github.com/castlabs/electron-releases/releases/download/v"
+    },
+    "mac": {
+      "category": "public.app-category.music",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Audio"
+    }
+  }
+}

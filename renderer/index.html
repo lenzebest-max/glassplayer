@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'wasm-unsafe-eval' https://sdk.scdn.co https://js-cdn.music.apple.com;
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data: blob: https://*.scdn.co https://*.spotifycdn.com https://*.spotify.com https://*.mzstatic.com https://*.apple.com;
+    connect-src 'self' https://*.spotify.com wss://*.spotify.com https://*.scdn.co https://*.spotifycdn.com https://*.akamaized.net https://*.apple.com https://*.mzstatic.com https://*.cdn-apple.com;
+    media-src 'self' blob: data: https:;
+    frame-src https://sdk.scdn.co https://*.spotify.com https://*.apple.com;
+    worker-src 'self' blob:;
+    font-src 'self' data:;
+    object-src 'none';
+    base-uri 'none';
+    form-action 'none';">
+  <title>GlassPlayer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="backdrop" aria-hidden="true">
+    <div class="art" id="backdrop-art"></div>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="tint"></div>
+  </div>
+
+  <div id="app">
+    <header class="titlebar">
+      <div class="brand" id="brand"></div>
+      <label class="search glass-input">
+        <span class="search-icon" id="search-icon"></span>
+        <input id="search" type="search" placeholder="Search Spotify and Apple Music" autocomplete="off" spellcheck="false">
+        <kbd>Ctrl K</kbd>
+      </label>
+      <div class="title-actions">
+        <button class="pill" id="btn-import" title="Import a playlist"></button>
+        <button class="icon-btn" id="btn-settings" title="Settings"></button>
+      </div>
+      <div class="win-controls" id="win-controls"></div>
+    </header>
+
+    <aside class="sidebar glass" id="sidebar"></aside>
+    <main class="content glass" id="view" tabindex="-1"></main>
+    <aside class="queue-panel glass" id="queue" hidden></aside>
+
+    <footer class="nowbar glass" id="nowbar"></footer>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="menu-root"></div>
+  <div id="toasts" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
